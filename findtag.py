@@ -3,7 +3,7 @@ import os
 import sys
 
 
-# TODO 1. input_tag_and_directory( принимает тег для поиска, директорию, где искать, тег для поиска внутри файла)
+# TODO 1. input_tag_and_directory( принимает тег для поиска, директорию, где искать)
 def input_tag_and_directory():
     # arguments_for_search = sys.argv
     print(sys.argv)
