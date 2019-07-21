@@ -14,7 +14,7 @@ def input_tag_and_directory():
         sys.exit()
     elif len(sys.argv) < 3:
         print('Для поиска будет использована текущая директория')
-        return sys.argv[1]
+        return sys.argv[1], os.getcwd()
 
     return sys.argv[1], sys.argv[2]
 
@@ -39,9 +39,8 @@ def search_files(directory_search_tag, directory_path):
 # TODO 4. open_in_file
 
 def main() -> None:
-    directory_search_tag, directory_path = input_tag_and_directory()
-    search_files(directory_search_tag, directory_path)
-    
+    search_files(*input_tag_and_directory())
+
 
 if __name__ == "__main__":
     main()
