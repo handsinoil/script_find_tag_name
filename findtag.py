@@ -39,7 +39,7 @@ def search_files(directory_search_tag, directory_path):
 # TODO 4. open_in_file
 
 def main() -> None:
-    directory_search_tag, directory_path = input_tag_and_directory
+    directory_search_tag, directory_path = input_tag_and_directory()
     search_files(directory_search_tag, directory_path)
     
 
