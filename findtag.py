@@ -29,9 +29,10 @@ def search_files(directory_search_tag, directory_path):
         if os.path.isfile(file_path) and directory_search_tag in file:
             result_file_list.append(file)
     print('Найдены следующие файлы:')
-    for i in range(len(result_file_list)):
-        print(f'{i}. {result_file_list[i]}')
-    return sorted(result_file_list)
+    result = sorted(result_file_list)
+    for i in range(len(result)):
+        print(f'{i}. {result[i]}')
+    return result
 
 
 # TODO 3. file_select
