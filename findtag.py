@@ -6,6 +6,7 @@ import sys
 # TODO 1. input_tag_and_directory( принимает тег для поиска, директорию, где искать, тег для поиска внутри файла)
 def input_tag_and_directory():
     # arguments_for_search = sys.argv
+    print(sys.argv)
     if len(sys.argv) < 2:
         print('Использование для Linux: python3 findtag.py [имя тега] [адрес директории поиска, '
               'по умолчанию ищет в текущей]' + '\n' +
@@ -20,8 +21,8 @@ def input_tag_and_directory():
 
 
 # TODO 2. search_files_tag(принимает тег для поиска и адрес директории, в которой нужно искать) на данный момент ищет
-# только в указанной директории, без поддиректорий.
-def search_files(directory_search_tag, directory_path):
+#  только в указанной директории, без поддиректорий.
+def search_files(directory_search_tag, directory_path=os.getcwd()):
     file_list = os.listdir(directory_path)
     result_file_list = []
     for file in file_list:
@@ -39,7 +40,7 @@ def search_files(directory_search_tag, directory_path):
 # TODO 4. open_in_file
 
 def main() -> None:
-    search_files(input_tag_and_directory)
+    search_files(*input_tag_and_directory())
     
 
 if __name__ == "__main__":
