@@ -24,22 +24,42 @@ def input_tag_and_directory():
 def search_files(directory_search_tag, directory_path):
     file_list = os.listdir(directory_path)
     result_file_list = []
+    files = dict()
+
     for file in file_list:
         file_path = os.path.join(directory_path, file)
         if os.path.isfile(file_path) and directory_search_tag in file:
             result_file_list.append(file)
+            files[file] = file_path
+
     print('Найдены следующие файлы:')
-    result = sorted(result_file_list)
-    for i in range(len(result)):
-        print(f'{i}. {result[i]}')
-    return result
+    result_list = sorted(result_file_list)
+    for i in range(len(result_list)):
+        print(f'{i}. {result_list[i]}')
+    return result_list, files
 
 
 # TODO 3. file_select
+def file_select(result_list, files):
+    if len(result_list) > 0:
+        file_number = int(input('Выберите номер файла для открытия: '))
+        file = files[result_list[file_number]]
+
+        search_tag = input('Введите тег для поиска: ')
+
+        print(file, search_tag) # отладочная печать
+        return file, search_tag
+
+    print('Ничего не найдено.')
+    return None, None
+
 # TODO 4. open_in_file
 
+
 def main() -> None:
-    search_files(*input_tag_and_directory())
+    directory_search_tag, directory_path = input_tag_and_directory()
+    result_list, files = search_files(directory_search_tag, directory_path)
+    file, search_tag = file_select(result_list, files)
 
 
 if __name__ == "__main__":
