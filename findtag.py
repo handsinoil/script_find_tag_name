@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 import os
 import sys
+from subprocess import call as start_file
 
 
 # TODO 1. input_tag_and_directory( принимает тег для поиска, директорию, где искать)
@@ -54,12 +55,18 @@ def file_select(result_list, files):
     return None, None
 
 # TODO 4. open_in_file
+def open_file(file, search_tag) -> 'str':
+    arg_for_opened = "xdg-open " + file
+    start_file([arg_for_opened], shell=True)
+    print("Открыт файл с тегом ", search_tag)
+
 
 
 def main() -> None:
     directory_search_tag, directory_path = input_tag_and_directory()
     result_list, files = search_files(directory_search_tag, directory_path)
     file, search_tag = file_select(result_list, files)
+    open_file(file, search_tag)
 
 
 if __name__ == "__main__":
