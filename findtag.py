@@ -1,4 +1,5 @@
-#!/usr/bin/env python3
+#!/usr/bin/env
+# -*- coding: utf-8 -*-
 import os
 import sys
 from subprocess import call as start_file
@@ -55,7 +56,7 @@ def file_select(result_list, files):
     return None, None
 
 # TODO 4. open_in_file
-def open_file(file, search_tag) -> 'str':
+def open_file(file, search_tag) -> str:
     arg_for_opened = "xdg-open " + file
     start_file([arg_for_opened], shell=True)
     print("Открыт файл с тегом ", search_tag)
