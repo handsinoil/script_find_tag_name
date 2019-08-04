@@ -25,19 +25,27 @@ def input_tag_and_directory():
 def search_files(directory_search_tag, directory_path):
     file_list = os.listdir(directory_path)
     result_file_list = []
-    files = dict()
+    files = {}
 
     for file in file_list:
         file_path = os.path.join(directory_path, file)
         if os.path.isfile(file_path) and directory_search_tag in file:
             result_file_list.append(file)
-            files[file] = file_path
+            files[file] = ['file', file_path]
+        elif os.path.isdir(file_path):
+            dir_list = os.listdir(file_path)
+            for item in dir_list:
+                file_list.append(os.path.join(file_path, item))
 
-    print('Найдены следующие файлы:')
-    result_list = sorted(result_file_list)
-    for i in range(len(result_list)):
-        print(f'{i}. {result_list[i]}')
-    return result_list, files
+    if len(result_file_list) == 0:
+        print('Соответствий не найдено.')
+        return None, None
+    else:
+        print('Найдены следующие соответствия:')
+        result_list = sorted(result_file_list)
+        for i in range(len(result_list)):
+            print(f'{i}. {result_list[i]}\n')
+        return result_list, files
 
 
 # TODO 3. file_select
@@ -45,11 +53,7 @@ def file_select(result_list, files):
     if len(result_list) > 0:
         file_number = int(input('Выберите номер файла для открытия: '))
         file = files[result_list[file_number]]
-
-        search_tag = input('Введите тег для поиска: ')
-
-        print(file, search_tag) # отладочная печать
-        return file, search_tag
+        return file
 
     print('Ничего не найдено.')
     return None, None
@@ -66,7 +70,7 @@ def main() -> None:
     directory_search_tag, directory_path = input_tag_and_directory()
     result_list, files = search_files(directory_search_tag, directory_path)
     file, search_tag = file_select(result_list, files)
-    open_file(file, search_tag)
+    open_file(file, sys.argv[1])
 
 
 if __name__ == "__main__":
