@@ -21,8 +21,7 @@ def input_tag_and_directory():
     return sys.argv[1], sys.argv[2]
 
 
-# TODO 2. search_files_tag(принимает тег для поиска и адрес директории, в которой нужно искать) на данный момент ищет
-# только в указанной директории, без поддиректорий.
+# TODO 2. search_files_tag(принимает тег для поиска и адрес директории, в которой нужно искать)
 def search_files(directory_search_tag, directory_path):
     file_list = os.listdir(directory_path)
     result_file_list = []
@@ -55,12 +54,12 @@ def file_select(result_list, files):
     print('Ничего не найдено.')
     return None, None
 
+
 # TODO 4. open_in_file
 def open_file(file, search_tag) -> str:
     arg_for_opened = "xdg-open " + file
     start_file([arg_for_opened], shell=True)
     print("Открыт файл с тегом ", search_tag)
-
 
 
 def main() -> None:
