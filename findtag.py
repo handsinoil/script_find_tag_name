@@ -60,17 +60,25 @@ def file_select(result_list, files):
 
 
 # TODO 4. open_in_file
-def open_file(file, search_tag) -> str:
-    arg_for_opened = "xdg-open " + file
-    start_file([arg_for_opened], shell=True)
-    print("Открыт файл с тегом ", search_tag)
+def open_file(file, search_tag, directory_path) -> str:
+
+    if 'linux' in sys.platform:
+        arg_for_opened = "xdg-open " + directory_path+file
+        start_file([arg_for_opened], shell=True)
+        print("Открыт файл с тегом ", search_tag)
+    else:
+        arg_for_opened = directory_path + file
+        os.system("start " + arg_for_opened)
+        print("Открыт файл с тегом ", search_tag)
+
+              
 
 
 def main() -> None:
     directory_search_tag, directory_path = input_tag_and_directory()
     result_list, files = search_files(directory_search_tag, directory_path)
     file, search_tag = file_select(result_list, files)
-    open_file(file, sys.argv[1])
+    open_file(file, sys.argv[1], directory_path)
 
 
 if __name__ == "__main__":
