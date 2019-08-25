@@ -69,6 +69,7 @@ def open_file(file, search_tag, directory_path) -> str:
     else:
         arg_for_opened = directory_path + file
         os.system("start " + arg_for_opened)
+        #subprocess.Popen(['start', arg_for_opened], shell=True) # если не заработает метод system
         print("Открыт файл с тегом ", search_tag)
 
               
